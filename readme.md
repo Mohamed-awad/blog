@@ -12,6 +12,8 @@ this blog web site is web site for publish posts and make comments on it
 
 * you need to install python3
 * you need to install pip or pip3 package
+* you can signup/logout  and login in common way or with github, facebook, google, instagram
+* you can see api for all apps in this project
 
 ## Run the project
 

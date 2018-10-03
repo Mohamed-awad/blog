@@ -25,6 +25,7 @@ sitemaps = {
 
 urlpatterns = [
   path('admin/', admin.site.urls),
+  path('accounts/', include('blog.accounts.urls')),
   path('blog/', include('blog.blog_app.urls', namespace='blog')),
   path('tinymce/', include('tinymce.urls')),
   url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap')

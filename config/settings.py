@@ -38,10 +38,12 @@ INSTALLED_APPS = [
   'django.contrib.messages',
   'django.contrib.staticfiles',
   'blog.blog_app',
+  'blog.accounts',
   'tinymce',
   'django.contrib.sites',
   'django.contrib.sitemaps',
-
+  'social_django',
+  'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -125,3 +127,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 SITE_ID = 1
+
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = '/blog/'
+LOGOUT_REDIRECT_URL = '/blog/'
