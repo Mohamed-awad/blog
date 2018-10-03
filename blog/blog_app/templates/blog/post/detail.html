@@ -3,10 +3,24 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
-  <div class="row">
-    <h3>{{ post.title }}</h3>
-    <p class="small" style="color: #777777">Published {{ post.publish }} by {{ post.author }}</p>
-    <p>{{ post.body|linebreaks }}</p>
-    <div class="fb-comments" data-href="{{ post.get_absolute_uri }}" data-numposts="5"></div>
-   </div>
+	<div class="row">
+		<div class="col col-xs-12">
+      <div class="blog-grids-detail">
+        <div class="grid-detail">
+          <div class="entry-media">
+            <img src="http://www.csshint.com/wp-content/uploads/2017/09/beautiful-buttons-effect.jpg" alt="">
+          </div>
+          <div class="entry-body">
+            <h3><a href="#">{{ post.title }}</a></h3>
+            <hr>
+            <p>{{ post.body|linebreaks }}</p>
+            <hr>
+            <p class="date">Published {{ post.publish }} by {{ post.author }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="fb-comments" data-href="{{ post.get_absolute_uri }}" data-numposts="5"></div>
+    </div>
+
+  </div>
 {% endblock %}

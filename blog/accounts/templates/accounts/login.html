@@ -27,21 +27,21 @@
     <button type="submit">Login</button>
     <a href="{% url 'accounts:signup' %}">Sign up</a>
   </form>
-{#  <hr>#}
-{#  <h4 style="margin-left: 150px;">Login With</h4><br>#}
-{#  <ul style="list-style-type: none">#}
-{#    <li style="float: left; margin-right: 10px;">#}
-{#      <a class="btn btn-outline-dark" href="{% url 'social:begin' 'github' %}">github</a>#}
-{#    </li>#}
-{#  <li style="float: left; margin-right: 10px;">#}
-{#    <a class="btn btn-outline-primary" href="{% url 'social:begin' 'facebook' %}">facebook</a>#}
-{#  </li>#}
-{#  <li style="float: left; margin-right: 10px;">#}
-{#    <a class="btn btn-outline-secondary" href="{% url 'social:begin' 'google-oauth2' %}">google</a>#}
-{#  </li>#}
-{#  <li style="float: left;">#}
-{#    <a class="btn btn-outline-danger" href="{% url 'social:begin' 'instagram' %}">Instagram</a>#}
-{#  </li>#}
-{#  </ul>#}
+  <hr>
+  <h4 style="margin-left: 150px;">Login With</h4><br>
+  <ul style="list-style-type: none">
+    <li style="float: left; margin-right: 10px;">
+      <a class="btn btn-outline-dark" href="{% url 'social:begin' 'github' %}">github</a>
+    </li>
+  <li style="float: left; margin-right: 10px;">
+    <a class="btn btn-outline-primary" href="{% url 'social:begin' 'facebook' %}">facebook</a>
+  </li>
+  <li style="float: left; margin-right: 10px;">
+    <a class="btn btn-outline-secondary" href="{% url 'social:begin' 'google-oauth2' %}">google</a>
+  </li>
+  <li style="float: left;">
+    <a class="btn btn-outline-danger" href="{% url 'social:begin' 'instagram' %}">Instagram</a>
+  </li>
+  </ul>
 
 {% endblock %}

@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>{% block title %} Blog Website {% endblock %}</title>
   <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
+  <link rel="stylesheet" href="{%  static "css/normalize.css"%}"/>
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
@@ -19,6 +20,7 @@
         <h3 class="page-header">Muvalab Blog</h3>
         <p><a href="{% url 'blog:post_feed' %}" target="_blank">Subscribe to RSS Feed</a></p>
       </div>
+      <!-- facebook comment -->
       <div id="fb-root"></div>
       <script>(function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];

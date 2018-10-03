@@ -5,10 +5,30 @@
 
 {% block content %}
  <h2 class="page-header">Recents Posts</h2>
-  {% for post in posts %}
-    <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
-    <p class="small">Published {{ post.publish }} by {{ post.author }}</p>
-    <p>{{ post.body|truncatewords:25|linebreaks }}</p>
-  {% endfor %}
+  <div class="row">
+    <div class="col col-xs-12">
+      <div class="blog-grids">
+        {% for post in posts %}
+          <div class="grid">
+            <div class="entry-media">
+              <img src="http://www.csshint.com/wp-content/uploads/2017/09/beautiful-buttons-effect.jpg" alt="">
+            </div>
+            <div class="entry-body">
+              <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+              <hr>
+              <p>{{ post.body|truncatewords:25|linebreaks }}</p>
+              <hr>
+              <p class="small">Published {{ post.publish }} by {{ post.author }}</p>
+              <div class="read-more-date">
+                <a href="{{ post.get_absolute_url }}">Read More..</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <br><hr><br>
   {% include "blog/pagination.html" with page=posts %}
+  <br><br><br>
 {% endblock %}
