@@ -4,14 +4,17 @@ from .serializers import UserSerializer
 from rest_framework import generics
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class UserList(generics.ListCreateAPIView):
+class UserList(LoginRequiredMixin, generics.ListCreateAPIView):
+  login_url = 'accounts:login'
   queryset = User.objects.all()
   serializer_class = UserSerializer
 
 
-class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+class UserDetail(LoginRequiredMixin, generics.RetrieveUpdateDestroyAPIView):
+  login_url = 'accounts:login'
   queryset = User.objects.all()
   serializer_class = UserSerializer
 

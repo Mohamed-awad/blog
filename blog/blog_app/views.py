@@ -3,14 +3,18 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .models import Post
 from .serializers import PostSerializer
 from rest_framework import generics
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 
-class PostList(generics.ListCreateAPIView):
+class PostList(LoginRequiredMixin, generics.ListCreateAPIView):
+  login_url = 'accounts:login'
   queryset = Post.objects.all()
   serializer_class = PostSerializer
 
 
-class PostDetail(generics.RetrieveUpdateDestroyAPIView):
+class PostDetail(LoginRequiredMixin, generics.RetrieveUpdateDestroyAPIView):
+  login_url = 'accounts:login'
   queryset = Post.objects.all()
   serializer_class = PostSerializer
 
@@ -28,6 +32,7 @@ def post_list(request):
   return render(request, 'blog/post/list.html', {'posts': posts})
 
 
+@login_required
 def post_detail(request, year, month, day, post):
   post = get_object_or_404(Post, slug=post, status='published', publish__year=year, publish__month=month, publish__day=day)
   return render(request, 'blog/post/detail.html', {'post': post})

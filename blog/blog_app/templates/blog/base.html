@@ -17,8 +17,12 @@
         {% endblock %}
       </div>
       <div class="col-md-4">
-        <h3 class="page-header">Muvalab Blog</h3>
-        <p><a href="{% url 'blog:post_feed' %}" target="_blank">Subscribe to RSS Feed</a></p>
+        <h3 class="page-header">Mohamed Awad Blog</h3>
+        <p><a href="{% if request.user.is_authenticated %}
+                      {% url 'blog:post_feed' %}
+                    {% else %}
+                      {% url 'accounts:login' %}
+                    {% endif %}" target="_blank">Subscribe to RSS Feed</a></p>
       </div>
       <!-- facebook comment -->
       <div id="fb-root"></div>

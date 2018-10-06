@@ -18,13 +18,21 @@
                         {% endif %}" alt="...">
             </div>
             <div class="entry-body">
-              <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+              <h3><a href="{% if request.user.is_authenticated %}
+                             {{ post.get_absolute_url }}
+                           {% else %}
+                             {% url 'accounts:login' %}
+                           {% endif %}">{{ post.title }}</a></h3>
               <hr>
               <p>{{ post.body|truncatewords:25|linebreaks }}</p>
               <hr>
               <p class="small">Published {{ post.publish }} by {{ post.author }}</p>
               <div class="read-more-date">
-                <a href="{{ post.get_absolute_url }}">Read More..</a>
+                <a href="{% if request.user.is_authenticated %}
+                           {{ post.get_absolute_url }}
+                         {% else %}
+                           {% url 'accounts:login' %}
+                         {% endif %}">Read More..</a>
               </div>
             </div>
           </div>
