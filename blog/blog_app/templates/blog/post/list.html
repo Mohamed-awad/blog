@@ -11,7 +11,11 @@
         {% for post in posts %}
           <div class="grid">
             <div class="entry-media">
-              <img src="http://www.csshint.com/wp-content/uploads/2017/09/beautiful-buttons-effect.jpg" alt="">
+              <img src="{% if post.image %}
+                          {{ post.image.url }}
+                        {% else %}
+                          {% static 'imgs/default.jpg' %}
+                        {% endif %}" alt="...">
             </div>
             <div class="entry-body">
               <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>

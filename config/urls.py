@@ -13,6 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('config/', include('config.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
@@ -30,4 +32,4 @@ urlpatterns = [
   path('blog/', include('blog.blog_app.urls', namespace='blog')),
   path('tinymce/', include('tinymce.urls')),
   url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap')
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

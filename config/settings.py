@@ -141,10 +141,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-SITE_ID = 1
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'posts/')
+
+SITE_ID = 1
 
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
