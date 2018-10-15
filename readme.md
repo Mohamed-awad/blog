@@ -29,5 +29,7 @@ this blog web site is web site for publish posts and make comments on it
 * press on any post to see more details about it
 
 
+
+
 ### References
 * this taturial http://muva.co.ke/blog/building-a-blog-application-with-python-3-5-and-django-1-11-4-web-framework/ is the base for build this project 
