@@ -5,6 +5,9 @@ from .serializers import PostSerializer
 from rest_framework import generics
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from .forms import PostCreateForm
+from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
 
 
 class PostList(LoginRequiredMixin, generics.ListCreateAPIView):
@@ -17,6 +20,23 @@ class PostDetail(LoginRequiredMixin, generics.RetrieveUpdateDestroyAPIView):
   login_url = 'accounts:login'
   queryset = Post.objects.all()
   serializer_class = PostSerializer
+
+
+class AddPost(LoginRequiredMixin, CreateView):
+  def get_initial(self):
+    return {
+      'author': self.request.user
+    }
+
+  def set(self):
+    return {
+      'author': self.request.user
+    }
+  login_url = 'accounts:login'
+  form_class = PostCreateForm
+  template_name = 'blog/post/create.html'
+  success_url = reverse_lazy('blog:post_list')
+  http_method_names = ('post', 'get', 'set')
 
 
 def post_list(request):

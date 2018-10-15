@@ -23,6 +23,12 @@
                     {% else %}
                       {% url 'accounts:login' %}
                     {% endif %}" target="_blank">Subscribe to RSS Feed</a></p>
+
+        <p><a class="btn btn-outline-primary" href="{% if request.user.is_authenticated %}
+                      {% url 'blog:add_post' %}
+                    {% else %}
+                      {% url 'accounts:login' %}
+                    {% endif %}">add your posts</a></p>
       </div>
       <!-- facebook comment -->
       <div id="fb-root"></div>
