@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import PostCreateForm
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
 
 
 class PostList(LoginRequiredMixin, generics.ListCreateAPIView):
@@ -22,16 +23,24 @@ class PostDetail(LoginRequiredMixin, generics.RetrieveUpdateDestroyAPIView):
   serializer_class = PostSerializer
 
 
-class AddPost(LoginRequiredMixin, CreateView):
-  def get_initial(self):
-    return {
-      'author': self.request.user
+@login_required
+def add_post(request):
+  if request.method == 'POST':
+    post_form = PostCreateForm(request.POST, request.FILES)
+    if post_form.is_valid():
+      post = post_form.save(commit=False)
+      post.author = request.user
+      post.save()
+      return HttpResponseRedirect(reverse_lazy('blog:post_list'))
+  elif request.method == 'GET':
+    form = PostCreateForm()
+    context = {
+      'form': form,
     }
+    return render(request, 'blog/post/create.html', context)
 
-  def set(self):
-    return {
-      'author': self.request.user
-    }
+
+class AddPost(LoginRequiredMixin, CreateView):
   login_url = 'accounts:login'
   form_class = PostCreateForm
   template_name = 'blog/post/create.html'
