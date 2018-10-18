@@ -40,14 +40,6 @@ def add_post(request):
     return render(request, 'blog/post/create.html', context)
 
 
-class AddPost(LoginRequiredMixin, CreateView):
-  login_url = 'accounts:login'
-  form_class = PostCreateForm
-  template_name = 'blog/post/create.html'
-  success_url = reverse_lazy('blog:post_list')
-  http_method_names = ('post', 'get', 'set')
-
-
 def post_list(request):
   list_objects = Post.published.all()
   paginator = Paginator(list_objects, 3)
