@@ -20,11 +20,27 @@
             <p>{{ post.body|linebreaks }}</p>
             <hr>
             <p class="date">Published {{ post.publish }} by {{ post.author }}</p>
+            {% if flag %}
+              <span style="color: #34ce57; font-size: 60px;">&#9829;</span>
+            {% else %}
+              <a href="{% url 'blog:like_post' post.id %}" >
+                <span style="color: #5AC8FA;font-size: 60px;">&#9829;</span>
+              </a>
+            {% endif %}
           </div>
         </div>
       </div>
       <div class="fb-comments" data-href="{{ post.get_absolute_uri }}" data-numposts="5"></div>
     </div>
-
   </div>
 {% endblock %}
+
+{#<form id="likebutton" method="POST" action="/posts/{{eachpost.id}}/preference/1/">#}
+{#{% csrf_token %}#}
+{#<input type="hidden">#}
+{#</form>#}
+
+{#<form id="dislikebutton" method="POST" action="/posts/{{eachpost.id}}/preference/2/">#}
+{#{% csrf_token %}#}
+{#<input type="hidden">#}
+{#</form>#}

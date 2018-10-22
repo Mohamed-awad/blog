@@ -26,7 +26,8 @@ class Post(models.Model):
   updated = models.DateTimeField(auto_now=True)
   status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='published')
   image = models.ImageField(upload_to='posts/%Y/%m/%d', blank=True)
-
+  likes = models.IntegerField(default=0)
+  dislikes = models.IntegerField(default=0)
   # the default manager
   objects = models.Manager()
 
@@ -41,3 +42,14 @@ class Post(models.Model):
 
   def get_absolute_url(self):
     return reverse('blog:post_detail', args=[self.pk])
+
+
+class Like(models.Model):
+  user = models.ForeignKey(User, related_name='user_likes', on_delete=models.CASCADE)
+  post = models.ForeignKey(Post, related_name='liked_posts', on_delete=models.CASCADE)
+  value = models.BooleanField(default=False)
+  created = models.DateTimeField(auto_now_add=True)
+  updated = models.DateTimeField(auto_now=True)
+
+  def __str__(self):
+    return str(self.user) + ':' + str(self.post) + ':' + str(self.value)

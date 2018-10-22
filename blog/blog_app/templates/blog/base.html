@@ -12,11 +12,7 @@
   {% include 'blog/navbar.html' %}
   <div class="container">
     <div class="row">
-      <div class="col-md-8">
-        {% block content %}
-        {% endblock %}
-      </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
         <h3 class="page-header">Mohamed Awad Blog</h3>
         <p><a href="{% if request.user.is_authenticated %}
                       {% url 'blog:post_feed' %}
@@ -29,6 +25,12 @@
                     {% else %}
                       {% url 'accounts:login' %}
                     {% endif %}">add your posts</a></p>
+      {% block profile %}
+      {% endblock %}
+      </div>
+      <div class="col-md-9">
+        {% block content %}
+        {% endblock %}
       </div>
       <!-- facebook comment -->
       <div id="fb-root"></div>
@@ -39,7 +41,11 @@
         js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1&appId=314700825747438&autoLogAppEvents=1';
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));</script>
+
     </div>
   </div>
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
