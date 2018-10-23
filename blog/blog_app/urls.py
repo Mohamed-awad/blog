@@ -14,4 +14,5 @@ urlpatterns = [
   url(r'^feed/$', PostFeed(), name='post_feed'),
   url(r'^like_post/(?P<pk>\d+)$', views.like_post, name='like_post'),
   url(r'^del_post/(?P<pk>\d+)$', views.del_post, name='del_post'),
+  url(r'^update_post/(?P<pk>\d+)$', views.UpdatePost.as_view(), name='update_post'),
 ]

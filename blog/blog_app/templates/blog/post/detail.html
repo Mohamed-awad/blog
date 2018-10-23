@@ -19,7 +19,9 @@
             <hr>
             <p>{{ post.body|linebreaks }}</p>
             <hr>
-            <p class="date" style="margin-bottom: 0;">Published {{ post.publish }} by {{ post.author }}</p>
+            <p class="date" style="margin-bottom: 0;">
+              Published {{ post.publish }} by {{ post.author }}
+            </p>
             {% if flag %}
               <span style="color: #34ce57; font-size: 60px;">&#9829;</span>
             {% else %}
@@ -30,10 +32,17 @@
             {% endif %}
             {% if post.author == request.user %}
               <a style="float: right; margin-top: 30px;"
-                 class="btn btn-outline-danger" href="{% url 'blog:del_post' post.id%}">
+                 class="btn btn-outline-danger"
+                 href="{% url 'blog:del_post' post.id %}">
                 delete
               </a>
+              <a style="float: right; margin-top: 30px; margin-right: 10px;"
+                 class="btn btn-outline-info"
+                 href="{% url 'blog:update_post' post.id %}">
+                Edit
+              </a>
             {% endif %}
+
           </div>
         </div>
       </div>

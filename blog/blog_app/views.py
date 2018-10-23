@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import PostCreateForm
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
+from django.views.generic import UpdateView
 
 
 class PostList(LoginRequiredMixin, generics.ListCreateAPIView):
@@ -46,6 +47,15 @@ def del_post(request, pk):
   return HttpResponseRedirect(reverse_lazy('blog:post_list'))
 
 
+class UpdatePost(LoginRequiredMixin, UpdateView):
+  form_class = PostCreateForm
+  template_name = 'blog/post/create.html'
+
+  def get_object(self, queryset=None):
+    obj, created = Post.objects.get_or_create(id=self.kwargs['pk'])
+    return obj
+
+
 def post_list(request):
   list_objects = Post.published.all()
   paginator = Paginator(list_objects, 3)
@@ -78,5 +88,5 @@ def like_post(request, pk):
   post = Post.objects.get(id=pk)
   post.likes = post.likes + 1
   like = Like.objects.get_or_create(user=user, post=post, value=True)
-  return HttpResponseRedirect(reverse_lazy('blog:post_detail',kwargs={'pk': pk}))
+  return HttpResponseRedirect(reverse_lazy('blog:post_detail', kwargs={'pk': pk}))
 
