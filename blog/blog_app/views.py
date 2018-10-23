@@ -38,6 +38,13 @@ def add_post(request):
     }
     return render(request, 'blog/post/create.html', context)
 
+@login_required
+def del_post(request, pk):
+  post = Post.objects.get(id=pk)
+  if request.user == post.author:
+    post.delete()
+  return HttpResponseRedirect(reverse_lazy('blog:post_list'))
+
 
 def post_list(request):
   list_objects = Post.published.all()
@@ -71,6 +78,5 @@ def like_post(request, pk):
   post = Post.objects.get(id=pk)
   post.likes = post.likes + 1
   like = Like.objects.get_or_create(user=user, post=post, value=True)
-
   return HttpResponseRedirect(reverse_lazy('blog:post_detail',kwargs={'pk': pk}))
 

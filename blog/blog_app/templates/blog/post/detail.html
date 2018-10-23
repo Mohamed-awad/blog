@@ -19,12 +19,19 @@
             <hr>
             <p>{{ post.body|linebreaks }}</p>
             <hr>
-            <p class="date">Published {{ post.publish }} by {{ post.author }}</p>
+            <p class="date" style="margin-bottom: 0;">Published {{ post.publish }} by {{ post.author }}</p>
             {% if flag %}
               <span style="color: #34ce57; font-size: 60px;">&#9829;</span>
             {% else %}
-              <a href="{% url 'blog:like_post' post.id %}" >
-                <span style="color: #5AC8FA;font-size: 60px;">&#9829;</span>
+              <a style="color: #5AC8FA;font-size: 60px;"
+                 href="{% url 'blog:like_post' post.id %}" >
+                <span>&#9829;</span>
+              </a>
+            {% endif %}
+            {% if post.author == request.user %}
+              <a style="float: right; margin-top: 30px;"
+                 class="btn btn-outline-danger" href="{% url 'blog:del_post' post.id%}">
+                delete
               </a>
             {% endif %}
           </div>

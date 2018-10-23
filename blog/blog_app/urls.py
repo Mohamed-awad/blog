@@ -13,4 +13,5 @@ urlpatterns = [
   url(r'^api/(?P<pk>[0-9]+)/$', views.PostDetail.as_view(), name='detail_post_api'),
   url(r'^feed/$', PostFeed(), name='post_feed'),
   url(r'^like_post/(?P<pk>\d+)$', views.like_post, name='like_post'),
+  url(r'^del_post/(?P<pk>\d+)$', views.del_post, name='del_post'),
 ]
