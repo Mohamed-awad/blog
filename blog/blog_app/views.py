@@ -6,9 +6,8 @@ from rest_framework import generics
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from .forms import PostCreateForm
-from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 
 
 class PostList(LoginRequiredMixin, generics.ListCreateAPIView):

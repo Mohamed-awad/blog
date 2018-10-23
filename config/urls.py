@@ -31,5 +31,6 @@ urlpatterns = [
   url(r'^oauth/', include('social_django.urls', namespace='social')),
   path('blog/', include('blog.blog_app.urls', namespace='blog')),
   path('tinymce/', include('tinymce.urls')),
+  url('avatar/', include('avatar.urls')),
   url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

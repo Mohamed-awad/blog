@@ -1,12 +1,18 @@
 {% extends 'blog/base.html' %}
 {% load static %}
+{% load avatar_tags %}
 {% block title %}
   My Profile
 {% endblock %}
-
+{% block profile %}
+  <h3 style="color: #005cbf; margin-top: 10px;">Hi {{ user.username }}</h3>
+  {% avatar user 250 class="img-circle img-responsive" %}<br><br>
+  <a class="btn btn-outline-primary" href="{% url 'avatar_change' %}">
+    Change your avatar
+  </a>
+{% endblock %}
 {% block content %}
-  <h3 style="text-align: center; margin-top: 10px;">Hi {{ user.username }}</h3>
-  <h4 class="page-header">Your Posts</h4>
+  <h4 style="margin-top: 10px;" class="page-header">Your Posts</h4>
   <div class="row">
     <div class="col col-xs-12">
       <div class="blog-grids">

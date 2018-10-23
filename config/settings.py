@@ -34,6 +34,7 @@ INSTALLED_APPS = [
   'social_django',
   'blog.accounts',
   'tinymce',
+  'avatar',
   'django.contrib.sites',
   'django.contrib.sitemaps',
   'rest_framework',
