@@ -39,6 +39,7 @@ def add_post(request):
     }
     return render(request, 'blog/post/create.html', context)
 
+
 @login_required
 def del_post(request, pk):
   post = Post.objects.get(id=pk)
@@ -81,6 +82,7 @@ def post_detail(request, pk):
     'post': post,
   }
   return render(request, 'blog/post/detail.html', context)
+
 
 @login_required
 def like_post(request, pk):

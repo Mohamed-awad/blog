@@ -10,13 +10,16 @@
   <a class="btn btn-outline-primary" href="{% url 'avatar_change' %}">
     Change your avatar
   </a>
+  <a style="margin-top: 10px;" class="btn btn-outline-primary" href="{% url 'accounts:liked_posts' %}">
+    see posts you like
+  </a>
 {% endblock %}
 {% block content %}
   <h4 style="margin-top: 10px;" class="page-header">Your Posts</h4>
   <div class="row">
     <div class="col col-xs-12">
       <div class="blog-grids">
-        {% for post in user_posts %}
+        {% for post in posts %}
           <div class="grid">
             <div class="entry-media">
               <img src="{% if post.image %}

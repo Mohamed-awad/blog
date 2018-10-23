@@ -12,6 +12,7 @@ urlpatterns = [
   url(r'^$', core_view.UserList.as_view(), name='list_user_api'),
   url(r'^(?P<pk>[0-9]+)/$', core_view.UserDetail.as_view(), name='detail_user_api'),
   url(r'^my_profile/$', core_view.get_user_profile, name='user_profile'),
+  url(r'^myLikePosts/$', core_view.get_liked_posts, name='liked_posts'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
