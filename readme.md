@@ -4,16 +4,19 @@ this blog web site is web site for publish posts and make comments on it
 
 ## you can do 
 
-* you can publish posts and make comments
-
+* you can publish posts, make comments, like posts
+* you can see posts for other people
 * you can Subscribe our blog to RSS Feed
+* you can edit or delete your posts
+* you can signup/login/logout with github, facebook, google, instagram
+* you can see api for all apps in this project
+* you can see your information and your posts and posts you liked in your profile page
 
 ## Install
 
 * you need to install python3
 * you need to install pip or pip3 package
-* you can signup/logout  and login in common way or with github, facebook, google, instagram
-* you can see api for all apps in this project
+
 
 ## Run the project
 
@@ -28,8 +31,28 @@ this blog web site is web site for publish posts and make comments on it
 * open browser on this link `http://127.0.0.1:8000/blog`
 * press on any post to see more details about it
 
+### photo of site
 
+###### Blog Posts Page
+![alt text]()
 
+###### Post Detail Page
+![alt text]()
+
+###### Login Page
+![alt text]()
+
+###### Sign Up Page
+![alt text]()
+
+###### Add Post Page
+![alt text]()
+
+###### Posts Api Page
+![alt text]()
+
+###### Users Api Page
+![alt text]()
 
 ### References
 * this taturial http://muva.co.ke/blog/building-a-blog-application-with-python-3-5-and-django-1-11-4-web-framework/ is the base for build this project 
