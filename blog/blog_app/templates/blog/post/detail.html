@@ -34,7 +34,7 @@
               <a style="float: right; margin-top: 30px;"
                  class="btn btn-outline-danger"
                  href="{% url 'blog:del_post' post.id %}">
-                delete
+                Delete
               </a>
               <a style="float: right; margin-top: 30px; margin-right: 10px;"
                  class="btn btn-outline-info"
@@ -42,7 +42,13 @@
                 Edit
               </a>
             {% endif %}
-
+            {% if post.author != request.user %}
+              <a style="float: right; margin-top: 30px; margin-right: 10px;"
+                 class="btn btn-outline-primary"
+                 href="{% url 'blog:share_post' post.id %}">
+                Share
+              </a>
+            {% endif %}
           </div>
         </div>
       </div>

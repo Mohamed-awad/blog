@@ -92,3 +92,12 @@ def like_post(request, pk):
   like = Like.objects.get_or_create(user=user, post=post, value=True)
   return HttpResponseRedirect(reverse_lazy('blog:post_detail', kwargs={'pk': pk}))
 
+
+@login_required
+def share_post(request, pk):
+  post = Post.objects.get(id=pk)
+  post.author = request.user
+  post1 = Post(title=post.title, body=post.body,
+               author=request.user, image=post.image)
+  post1.save()
+  return HttpResponseRedirect(reverse_lazy('blog:post_detail', kwargs={'pk': post1.pk}))
