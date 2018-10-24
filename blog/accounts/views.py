@@ -1,5 +1,4 @@
 from django.contrib.auth.forms import UserCreationForm
-# from .forms import UserProfileForm
 from django.contrib.auth.models import User
 from .serializers import UserSerializer
 from rest_framework import generics
@@ -9,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from blog.blog_app.models import Post, Like
 from django.shortcuts import render
-from django.http import HttpResponse
+
 
 class UserList(LoginRequiredMixin, generics.ListCreateAPIView):
   login_url = 'accounts:login'

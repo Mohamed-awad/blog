@@ -2,7 +2,31 @@
 {% load static %}
 
 {% block title %}Our Blog{% endblock %}
-
+{% block search %}
+  <form id="searchform" action="{% url 'blog:search_post' %}" method="get" accept-charset="utf-8">
+    <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
+    <button class="searchbutton" type="submit">
+      search
+    </button>
+  </form>
+  <!-- filter posts by user form -->
+  <h3 style="margin-top: 20px;margin-bottom: 20px;">Filter Posts By User</h3>
+  <div class="dropdown" style="margin-top: 10px;">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      All
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="{% url 'blog:post_list'%}">
+        All
+      </a>
+      {% for user in users %}
+        <a class="dropdown-item" href="{% url 'blog:filter_post_by_user' user.id %}">
+          {{ user.username }}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
 {% block content %}
  <h2 class="page-header">Recents Posts</h2>
   <div class="row">
@@ -44,3 +68,6 @@
   {% include "blog/pagination.html" with page=posts %}
   <br><br><br>
 {% endblock %}
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>

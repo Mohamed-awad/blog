@@ -9,6 +9,7 @@ from .forms import PostCreateForm
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.views.generic import UpdateView
+from django.contrib.auth.models import User
 
 
 class PostList(LoginRequiredMixin, generics.ListCreateAPIView):
@@ -59,6 +60,7 @@ class UpdatePost(LoginRequiredMixin, UpdateView):
 
 def post_list(request):
   list_objects = Post.published.all()
+  users = User.objects.all()
   paginator = Paginator(list_objects, 3)
   page = request.GET.get('page')
   try:
@@ -67,7 +69,11 @@ def post_list(request):
     posts = paginator.page(1)
   except EmptyPage:
     posts = paginator.page(paginator.num_pages)
-  return render(request, 'blog/post/list.html', {'posts': posts})
+  context = {
+    'posts': posts,
+    'users': users,
+  }
+  return render(request, 'blog/post/list.html', context)
 
 
 @login_required
@@ -100,4 +106,22 @@ def share_post(request, pk):
   post1 = Post(title=post.title, body=post.body,
                author=request.user, image=post.image)
   post1.save()
-  return HttpResponseRedirect(reverse_lazy('blog:post_detail', kwargs={'pk': post1.pk}))
+  return HttpResponseRedirect(reverse_lazy('blog:post_detail',
+                                           kwargs={'pk': post1.pk}))
+
+
+def search_post(request):
+  q = request.GET.get('q')
+  list_objects = Post.published.filter(title__icontains=q)
+  return render(request, 'blog/post/list.html', {'posts': list_objects})
+
+
+def filter_post_by_user(request, pk):
+  user = User.objects.get(id=pk)
+  posts = Post.published.filter(author=user)
+  users = User.objects.all()
+  context = {
+    'users': users,
+    'posts': posts,
+  }
+  return render(request, 'blog/post/list.html', context)

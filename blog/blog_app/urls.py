@@ -16,4 +16,6 @@ urlpatterns = [
   url(r'^del_post/(?P<pk>\d+)$', views.del_post, name='del_post'),
   url(r'^share_post/(?P<pk>\d+)$', views.share_post, name='share_post'),
   url(r'^update_post/(?P<pk>\d+)$', views.UpdatePost.as_view(), name='update_post'),
+  url(r'^search_post/', views.search_post, name='search_post'),
+  url(r'^filer_post_by_user/(?P<pk>\d+)$', views.filter_post_by_user, name='filter_post_by_user'),
 ]
